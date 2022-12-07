@@ -1,7 +1,6 @@
 #menu {
-    text-align: left;
-    padding: 30px 8px;
     grid-row: 1;
+    text-align: left;
 }
 
 #cssmenu {
@@ -25,7 +24,8 @@
     list-style: none;
     position: relative;
     z-index: 999999990;
-    border-radius: 3px;
+    border-bottom-left-radius:10px;
+    border-bottom-right-radius:10px;
 }
 
 #cssmenu li {
