@@ -1,13 +1,6 @@
 <?php
+include '/var/www/private/priv.php';
 header('Content-Type: application/json');
-
-define('DB_HOST', 'localhost');
-define('DB_USERNAME', 'tech_humidity');
-define('DB_PASSWORD', fread(fopen("/irrigation_system/keys/priv.key", "r") or die("Unable to connect to database. Missing Password."),filesize("/irrigation_system/keys/priv.key")));
-define('DB_NAME', 'irrigation_system');
-//$myfile = fopen("webdictionary.txt", "r") or die("Unable to open file!");
-//echo fread(fopen("/irrigation_system/keys/priv.key", "r") or die("Unable to connect to database. Missing Password."),filesize("/irrigation_system/keys/priv.key"));
-//fclose($myfile);
 
 $mysqli = new mysqli(DB_HOST, DB_USERNAME, DB_PASSWORD, DB_NAME);
 
