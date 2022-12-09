@@ -4,7 +4,7 @@ var humidity_levels = [];
 
 $.ajax({
     method: "GET",
-    url: "/sites/hchart.php",
+    url: "/php/hchart.php",
     dataType: "html",
     success: function(data) {
         var obj = JSON.parse(data);
