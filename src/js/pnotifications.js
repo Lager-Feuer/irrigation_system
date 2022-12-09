@@ -16,7 +16,7 @@ function notifyButtonClick() {
 async function regWorker() {
     const publicKey = "BNzNIThB0mHAgR-NzDKBfekQ4XD_WBauTUOwUfFZzKHAg5_HkMod1afp2M7sO-63rju-78zPJqmQSZuNvhYr9Qc";
 
-    navigator.serviceWorker.register("pnotifications-serviceWorker.js", { scope: "/js/" });
+    navigator.serviceWorker.register("/js/pnotifications-serviceWorker.js", { scope: "/" });
 
     // Subscripe push notifications
     navigator.serviceWorker.ready
