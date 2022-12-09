@@ -2,7 +2,7 @@
 ### Added
 
 ### Modified
-
+- Fixed given scope of push notifications service worker
 ### Removed
 
 ## [0.1.0]
