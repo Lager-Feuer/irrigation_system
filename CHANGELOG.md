@@ -9,3 +9,4 @@
 ### Added
 - Added Changelog.md
 - Added Button to opt-in for push-notifications
+- Added service worker for push notifications
