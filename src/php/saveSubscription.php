@@ -1,6 +1,6 @@
 <?php
 // (A) LOAD WEB PUSH LIBRARY
-require "vendor/autoload.php";
+require "../vendor/autoload.php";
 use Minishlink\WebPush\Subscription;
 use Minishlink\WebPush\WebPush;
 
@@ -31,7 +31,7 @@ $query = sprintf("INSERT INTO PNSubscriptions(endpoint, expirationTime, p256dh, 
 print_r($query);
 $mysqli->query($query);
 $mysqli->close();
-*/
+
 
 // Set VAPID-Keys and email in push-object
 $push = new WebPush(["VAPID" => [
@@ -58,4 +58,5 @@ if ($result->isSuccess()) {
   // $result->getResponse();
   // $result->isSubscriptionExpired();
 }
+*/
 ?>

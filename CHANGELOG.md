@@ -3,6 +3,9 @@
 
 ### Modified
 - Fixed given scope of push notifications service worker
+
+### Fixed
+- Fixed filepath to autoload
 ### Removed
 
 ## [0.1.0]
