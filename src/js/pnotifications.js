@@ -30,7 +30,9 @@ async function regWorker() {
                     data.append("sub", JSON.stringify(sub));
                     fetch("../php/saveSubscription.php", { method: "POST", body: data })
                         .then(res => res.text())
-                        .then(txt => console.log(txt))
+                        .then(txt => {
+                            if (txt != 0) alert(txt);
+                        })
                         .catch(err => console.error(err));
                 },
 

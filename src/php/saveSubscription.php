@@ -1,5 +1,5 @@
 <?php
-include '/var/www/private/priv.php';
+require '/var/www/private/priv.php';
 require "../vendor/autoload.php";
 use Minishlink\WebPush\Subscription;
 use Minishlink\WebPush\WebPush;
@@ -18,11 +18,16 @@ if(!$mysqli){
   die("Connection failed: " . $mysqli->error);
 }
 
+$query = sprintf("SELECT * FROM PNSubscriptions WHERE endpoint = '$endpoint';");
+$result = $mysqli->query($query);
+if(mysqli_num_rows($result) != 0) die("Das Gerät hat Push-Benachrichtigungen bereits aktiviert.");
+
 $query = sprintf("INSERT INTO PNSubscriptions(endpoint, expirationTime, p256dh, auth) VALUES ('$endpoint', '$expirationTime', '$p256dh', '$auth');");
 $result = $mysqli->query($query);
-print_r($query);
-print_r($result);
 $mysqli->close();
+
+if($result != 1) die("Fehler beim Speichern des Abonnements für Push-Benachrichtigungen");
+
 /*
 
 // Set VAPID-Keys and email in push-object
