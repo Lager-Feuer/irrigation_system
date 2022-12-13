@@ -1,5 +1,6 @@
 ## [Unreleased]
 ### Added
+- Added saving of push-notifcation subscription
 
 ### Modified
 - Fixed given scope of push notifications service worker
