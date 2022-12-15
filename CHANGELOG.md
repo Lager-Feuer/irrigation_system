@@ -5,6 +5,8 @@
 - Added alert for subscribing to push-notifications
 
 ### Modified
+- Set Width of humidity chart to 100% of parent
+- Set height of humidity chart to 100% of parent
 
 ### Fixed
 - Fixed filepath to autoload
