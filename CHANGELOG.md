@@ -7,6 +7,7 @@
 ### Modified
 - Set Width of humidity chart to 100% of parent
 - Set height of humidity chart to 100% of parent
+- Implemented parameterized queries
 
 ### Fixed
 - Fixed filepath to autoload
