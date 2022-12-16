@@ -10,6 +10,7 @@
 - Set height of humidity chart to 100% of parent
 - Implemented parameterized queries
 - Changed color of push-notification icon to white (#FFFFFF)
+- Changed quotes of script-element
 
 ### Fixed
 - Fixed filepath to autoload
