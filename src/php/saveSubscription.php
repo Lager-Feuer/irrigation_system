@@ -23,16 +23,20 @@ if(!$mysqli){
 $query = sprintf("SELECT * FROM PNSubscriptions WHERE endpoint = ?");
 $stmt = $mysqli->prepare("SELECT * FROM PNSubscriptions WHERE endpoint = ?");
 $stmt->bind_param("s", $endpoint);
-
 $stmt->execute();
-
 $result = $stmt->get_result();
+
 //$result = $mysqli->query($query);
 if(mysqli_num_rows($result) != 0) die("Das Gerät hat Push-Benachrichtigungen bereits aktiviert.");
 mysqli_stmt_close($stmt);
 
-$query = sprintf("INSERT INTO PNSubscriptions(endpoint, expirationTime, p256dh, auth) VALUES ('$endpoint', '$expirationTime', '$p256dh', '$auth');");
-$result = $mysqli->query($query);
+//$query = sprintf("INSERT INTO PNSubscriptions(endpoint, expirationTime, p256dh, auth) VALUES ('$endpoint', '$expirationTime', '$p256dh', '$auth');");
+//$query = sprintf("INSERT INTO PNSubscriptions(endpoint, expirationTime, p256dh, auth) VALUES (?, ?, ?, ?);");
+$stmt = $mysqli->prepare("INSERT INTO PNSubscriptions(endpoint, expirationTime, p256dh, auth) VALUES (?, ?, ?, ?);");
+$stmt->bind_param("ssss", $endpoint, $expirationTime, $p256dh, $auth);
+$stmt->execute();
+$result = $stmt->get_result();
+
 $mysqli->close();
 
 if($result != 1) die("Fehler beim Speichern des Abonnements für Push-Benachrichtigungen");
