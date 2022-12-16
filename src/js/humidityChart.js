@@ -19,7 +19,7 @@ $.ajax({
                 fill: true,
                 data: humidity_levels,
                 borderWidth: 2,
-                backgroundColor: "#00AFD3 ",
+                backgroundColor: "#00AFD3",
                 borderColor: "#003758"
             }]
         }
