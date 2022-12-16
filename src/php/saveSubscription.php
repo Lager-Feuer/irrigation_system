@@ -21,7 +21,7 @@ if(!$mysqli){
 
 //$query = sprintf("SELECT * FROM PNSubscriptions WHERE endpoint = '$endpoint';");
 $query = sprintf("SELECT * FROM PNSubscriptions WHERE endpoint = ?");
-$stmt = $mysqli->prepare("SELECT * FROM users WHERE user_id = ?");
+$stmt = $mysqli->prepare("SELECT * FROM PNSubscriptions WHERE endpoint = ?");
 $stmt->bind_param("s", $endpoint);
 
 $stmt->execute();

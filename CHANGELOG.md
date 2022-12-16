@@ -13,7 +13,7 @@
 - Fixed filepath to autoload
 - Fixed given scope of push notifications service worker
 - Fixed saving of push-notification subscriptions
-
+- Fixed SQL statement
 ### Removed
 
 ## [0.1.0]
