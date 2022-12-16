@@ -7,10 +7,10 @@ use Minishlink\WebPush\WebPush;
 $sub_data = json_decode($_POST["sub"], true);
 $sub = Subscription::create($sub_data);
 
-$endpoint = $sub_data['endpoint'];
-$expirationTime = $sub_data['expirationTime'];
-$p256dh = $sub_data['keys']['p256dh'];
-$auth = $sub_data['keys']['auth'];
+$endpoint = strval($sub_data['endpoint']);
+$expirationTime = strval($sub_data['expirationTime']);
+$p256dh = strval($sub_data['keys']['p256dh']);
+$auth = strval($sub_data['keys']['auth']);
 
 $mysqli = new mysqli(DB_HOST, DB_USERNAME, DB_PASSWORD, DB_NAME);
 
@@ -18,28 +18,23 @@ if(!$mysqli){
   die("Connection failed: " . $mysqli->error);
 }
 
-
-//$query = sprintf("SELECT * FROM PNSubscriptions WHERE endpoint = '$endpoint';");
-$query = sprintf("SELECT * FROM PNSubscriptions WHERE endpoint = ?");
 $stmt = $mysqli->prepare("SELECT * FROM PNSubscriptions WHERE endpoint = ?");
 $stmt->bind_param("s", $endpoint);
 $stmt->execute();
 $result = $stmt->get_result();
 
-//$result = $mysqli->query($query);
 if(mysqli_num_rows($result) != 0) die("Das Gerät hat Push-Benachrichtigungen bereits aktiviert.");
 mysqli_stmt_close($stmt);
 
-//$query = sprintf("INSERT INTO PNSubscriptions(endpoint, expirationTime, p256dh, auth) VALUES ('$endpoint', '$expirationTime', '$p256dh', '$auth');");
-//$query = sprintf("INSERT INTO PNSubscriptions(endpoint, expirationTime, p256dh, auth) VALUES (?, ?, ?, ?);");
-$stmt = $mysqli->prepare("INSERT INTO PNSubscriptions(endpoint, expirationTime, p256dh, auth) VALUES (?, ?, ?, ?);");
+$stmt = $mysqli->prepare("INSERT INTO PNSubscriptions(endpoint, expirationTime, p256dh, auth) VALUES (?, ?, ?, ?)");
 $stmt->bind_param("ssss", $endpoint, $expirationTime, $p256dh, $auth);
 $stmt->execute();
-$result = $stmt->get_result();
 
+if(mysqli_stmt_affected_rows($stmt) > 0) echo "Das Gerät wurde erfolgreich für Push-Benachrichtigungen angemeldet.";
+else echo "Fehler beim Speichern des Abonnements für Push-Benachrichtigungen.";
+
+mysqli_stmt_close($stmt);
 $mysqli->close();
-
-if($result != 1) die("Fehler beim Speichern des Abonnements für Push-Benachrichtigungen");
 
 /*
 

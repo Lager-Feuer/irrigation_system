@@ -3,6 +3,7 @@
 - Added saving of push-notifcation subscription
 - Added check, if requesting device has already subscribed to push-notifications
 - Added alert for subscribing to push-notifications
+- Added alert for subscribing succesfully to push-notifications
 
 ### Modified
 - Set Width of humidity chart to 100% of parent
@@ -14,6 +15,8 @@
 - Fixed given scope of push notifications service worker
 - Fixed saving of push-notification subscriptions
 - Fixed SQL statement
+- Fixed bug, that subscription for push-notification couldn't be saved
+
 ### Removed
 
 ## [0.1.0]
