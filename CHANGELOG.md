@@ -9,6 +9,7 @@
 - Set Width of humidity chart to 100% of parent
 - Set height of humidity chart to 100% of parent
 - Implemented parameterized queries
+- Changed color of push-notification icon to white (#FFFFFF)
 
 ### Fixed
 - Fixed filepath to autoload
