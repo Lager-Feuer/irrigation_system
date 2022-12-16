@@ -18,9 +18,18 @@ if(!$mysqli){
   die("Connection failed: " . $mysqli->error);
 }
 
-$query = sprintf("SELECT * FROM PNSubscriptions WHERE endpoint = '$endpoint';");
-$result = $mysqli->query($query);
+
+//$query = sprintf("SELECT * FROM PNSubscriptions WHERE endpoint = '$endpoint';");
+$query = sprintf("SELECT * FROM PNSubscriptions WHERE endpoint = ?");
+$stmt = $mysqli->prepare("SELECT * FROM users WHERE user_id = ?");
+$stmt->bind_param("s", $endpoint);
+
+$stmt->execute();
+
+$result = $stmt->get_result();
+//$result = $mysqli->query($query);
 if(mysqli_num_rows($result) != 0) die("Das Gerät hat Push-Benachrichtigungen bereits aktiviert.");
+mysqli_stmt_close($stmt);
 
 $query = sprintf("INSERT INTO PNSubscriptions(endpoint, expirationTime, p256dh, auth) VALUES ('$endpoint', '$expirationTime', '$p256dh', '$auth');");
 $result = $mysqli->query($query);
